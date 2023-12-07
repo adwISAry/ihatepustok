@@ -1,14 +1,14 @@
-﻿@model ProductCreateVM
+﻿@model ProductUpdateVM
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Update";
 }
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Create Product</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Update Product</h6>
     </div>
     <div class="card-body">
-        <form asp-action="Create" method="post">
+        <form asp-action="Update" method="post">
             <div class="form-group">
                 <label asp-for="Name"></label>
                 <input asp-for="Name" class="form-control">
@@ -74,7 +74,7 @@
                 <select class="select-item" asp-for="CategoryId" asp-items='@new SelectList(ViewBag.Categories, "Id", "Name")' class="form-control">
                     <option disabled selected>Select Category</option>
                 </select>
-                
+
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
             <button class="btn btn-success">Submit!</button>
