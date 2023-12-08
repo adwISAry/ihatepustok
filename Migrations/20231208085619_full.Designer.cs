@@ -12,8 +12,8 @@ using nov30task.Context;
 namespace nov30task.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231206184436_isa")]
-    partial class isa
+    [Migration("20231208085619_full")]
+    partial class full
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -151,6 +151,9 @@ namespace nov30task.Migrations
 
                     b.Property<string>("ProductCode")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductImageId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");

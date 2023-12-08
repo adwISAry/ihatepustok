@@ -8,7 +8,7 @@
         <h6 class="m-0 font-weight-bold text-primary">Update Product</h6>
     </div>
     <div class="card-body">
-        <form asp-action="Update" method="post">
+        <form asp-action="Update" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label asp-for="Name"></label>
                 <input asp-for="Name" class="form-control">
@@ -43,6 +43,11 @@
                 <label asp-for="RewardPoints"></label>
                 <input asp-for="RewardPoints" class="form-control">
                 <span asp-validation-for="RewardPoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="formFile"></label>
+                <input asp-for="formFile" class="form-control">
+                <span asp-validation-for="formFile" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Avability"></label>

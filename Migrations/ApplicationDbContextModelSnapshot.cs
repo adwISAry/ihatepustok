@@ -150,6 +150,9 @@ namespace nov30task.Migrations
                     b.Property<string>("ProductCode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ProductImageId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 

@@ -3,9 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using nov30task.Areas.Admin.ViewModels;
 using nov30task.Context;
 using nov30task.Models;
+using System;
 using nov30task.ViewModels.BlogVM;
 using nov30task.ViewModels.CategoryVM;
 using nov30task.ViewModels.ProductVM;
+using System.Drawing;
 
 namespace nov30task.Areas.Admin.Controllers
 {
@@ -61,6 +63,13 @@ namespace nov30task.Areas.Admin.Controllers
 				ViewBag.Categories = _db.Categories;
 				return View(vm);
 			}
+			var rootpath = Directory.GetCurrentDirectory();
+			var imagepath = Path.Combine(rootpath, "wwwroot/prodimages");
+			var fileName = Guid.NewGuid().ToString()+vm.formFile.FileName;
+			var imageFile = System.IO.File.Create(Path.Combine(imagepath, fileName));
+
+			await  vm.formFile.CopyToAsync(imageFile);
+			imageFile.Close();
 
 			Product product = new Product
 			{
@@ -71,8 +80,11 @@ namespace nov30task.Areas.Admin.Controllers
 				Avability = vm.Avability,
 				Brand = vm.Brand,
 				Quantity = vm.Quantity,
-				Description = vm.Description,
+                ImageUrl =fileName,
+                Description = vm.Description,
 				Discount = vm.Discount,
+				
+
 				CategoryId = vm.CategoryId
 			};
 
@@ -100,6 +112,7 @@ namespace nov30task.Areas.Admin.Controllers
 				ExTax = data.ExTax,
 				ProductCode = data.ProductCode,
 				Quantity = data.Quantity,
+
 				RewardPoints = data.RewardPoints,
 				SellPrice = data.SellPrice,
 			});
@@ -130,7 +143,7 @@ namespace nov30task.Areas.Admin.Controllers
 			data.ProductCode = (string?)vm.ProductCode;
 			data.Quantity = vm.Quantity;
 			data.RewardPoints = vm.RewardPoints;
-			data.SellPrice = vm.SellPrice;
+
 			data.CategoryId = vm.CategoryId;
 
 			TempData["BookRenovationResponse"] = true;

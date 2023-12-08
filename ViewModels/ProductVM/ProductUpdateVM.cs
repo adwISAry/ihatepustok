@@ -15,5 +15,8 @@
         public ushort Quantity { get; set; }
         public string RewardPoints { get; set; }
         public decimal SellPrice { get; set; }
+
+        public IFormFile? formFile { get; set; }
+   
     }
 }
