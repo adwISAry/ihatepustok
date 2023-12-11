@@ -18,7 +18,7 @@ namespace nov30task.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _db.Categories.Select(c => new CategoryListItemVM { Id = c.Id, Name = c.Name }).ToListAsync());
+            return View(await _db.Categories.Select(c => new BlogListItemVM { Id = c.Id, Name = c.Name }).ToListAsync());
         }
 
         public IActionResult Create()

@@ -1,6 +1,6 @@
 ﻿namespace nov30task.ViewModels.CategoryVM
 {
-    public class CategoryListItemVM
+    public class BlogListItemVM
     {
         public int Id { get; set; }
         public string Name { get; set; }
