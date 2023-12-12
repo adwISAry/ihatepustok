@@ -26,7 +26,7 @@ namespace nov30task.Areas.Admin.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Create(BlogListItemVM vm)
+        public async Task<IActionResult> Create(BlogCreateVM vm)
         {
             if (!ModelState.IsValid)
             {
