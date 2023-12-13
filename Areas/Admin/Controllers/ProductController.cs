@@ -37,6 +37,7 @@ namespace nov30task.Areas.Admin.Controllers
 			}));
 		}
 
+
 		public IActionResult Create()
 		{
 			ViewBag.Categories = _db.Categories;

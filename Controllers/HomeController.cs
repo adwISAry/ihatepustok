@@ -19,5 +19,8 @@ namespace nov30task.Controllers
             return View(sliders);
         }
 
+
+
+
     }
 }
