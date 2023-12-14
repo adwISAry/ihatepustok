@@ -22,23 +22,47 @@ namespace nov30task.Areas.Admin.Controllers
 			_db = db;
 		}
 
-		public IActionResult Index()
+		public IActionResult Index(int pg = 1)
 		{
-			return View(_db.Products.Select(p => new AdminProductListItemVM {
+			List<Product> products = _db.Products.ToList();
+
+
+			const int pageSize = 5;
+            if (pg < 1)
+                pg = 1;
+
+			int recsCount = products.Count();
+
+			var pager = new Pager(recsCount ,pg ,pageSize);
+
+			int recSkip = (pg - 1) * pageSize;
+
+			var data = products.Skip(recSkip).Take(pager.PageSize).ToList();
+
+			this.ViewBag.Paper = pager;
+
+
+			return View( _db.Products.Select(p => new AdminProductListItemVM
+
+			{
 				Id = p.Id,
-				Name = p.Name,
-				CostPrice = p.CostPrice,
-				SellPrice = p.SellPrice,
-				Discount = p.Discount,
-				Category = p.Category,
-				ImageUrl = p.ImageUrl,
-				IsDeleted = p.IsDeleted,
-				Quantity = p.Quantity
+                Name = p.Name,
+                CostPrice = p.CostPrice,
+                SellPrice = p.SellPrice,
+                Discount = p.Discount,
+                Category = p.Category,
+                ImageUrl = p.ImageUrl,
+                IsDeleted = p.IsDeleted,
+                Quantity = p.Quantity
+
 			}));
+
+
+
 		}
 
 
-		public IActionResult Create()
+        public IActionResult Create()
 		{
 			ViewBag.Categories = _db.Categories;
 			return View();
