@@ -22,30 +22,28 @@ namespace nov30task.Areas.Admin.Controllers
 			_db = db;
 		}
 
-		public IActionResult Index(int pg = 1)
+		public async Task<IActionResult> Index(int pg = 1)
 		{
-			List<Product> products = _db.Products.ToList();
-
-
-			const int pageSize = 5;
+            const int pageSize = 3;
             if (pg < 1)
                 pg = 1;
 
-			int recsCount = products.Count();
-
-			var pager = new Pager(recsCount ,pg ,pageSize);
-
-			int recSkip = (pg - 1) * pageSize;
-
-			var data = products.Skip(recSkip).Take(pager.PageSize).ToList();
-
-			this.ViewBag.Paper = pager;
+            int recsCount = await _db.Products.CountAsync();
+            int recSkip = (pg - 1) * pageSize;
+            var pager = new Pager(recsCount, pg, pageSize);
+            List<Product> products = _db.Products.Include(a =>a.Category).Skip(recSkip).Take(pager.PageSize).ToList();
 
 
-			return View( _db.Products.Select(p => new AdminProductListItemVM
 
-			{
-				Id = p.Id,
+            var data = products;
+
+            this.ViewBag.Pager = pager;
+
+
+            return View(products.Select(p => new AdminProductListItemVM
+
+            {
+                Id = p.Id,
                 Name = p.Name,
                 CostPrice = p.CostPrice,
                 SellPrice = p.SellPrice,
@@ -55,11 +53,10 @@ namespace nov30task.Areas.Admin.Controllers
                 IsDeleted = p.IsDeleted,
                 Quantity = p.Quantity
 
-			}));
+            }));
 
 
-
-		}
+        }
 
 
         public IActionResult Create()
