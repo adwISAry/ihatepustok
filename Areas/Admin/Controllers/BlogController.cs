@@ -77,6 +77,15 @@ namespace nov30task.Areas.Admin.Controllers
             var data = await _db.Blogs.FindAsync(id);
             _db.Blogs.Remove(data);
             await _db.SaveChangesAsync();
-       }    
+       }
+
+        
+
+
+
+
+
+
+
     }
 }

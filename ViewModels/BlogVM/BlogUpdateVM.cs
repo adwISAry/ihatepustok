@@ -13,6 +13,7 @@ namespace nov30task.ViewModels.BlogVM
         [Required, MinLength(3), MaxLength(32)]
 
         public Author Author { get; set; }
+        public List<int> TagIds { get; set; }
     }
 }
 

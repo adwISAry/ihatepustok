@@ -15,5 +15,8 @@ namespace nov30task.Models
         public Author Author { get; set; }
 
         public bool IsDeleted { get; set; } = false;
+
+        public ICollection<Tag> Tags { get; set;}
     }
+
 }

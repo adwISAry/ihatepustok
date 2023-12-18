@@ -12,8 +12,8 @@ using nov30task.Context;
 namespace nov30task.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231211080448_isa123")]
-    partial class isa123
+    [Migration("20231218094543_isaaaaa")]
+    partial class isaaaaa
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -207,6 +207,25 @@ namespace nov30task.Migrations
                     b.ToTable("Sliders");
                 });
 
+            modelBuilder.Entity("nov30task.Models.Tag", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogId");
+
+                    b.ToTable("Tag");
+                });
+
             modelBuilder.Entity("nov30task.Models.Blog", b =>
                 {
                     b.HasOne("nov30task.Models.Author", "Author")
@@ -229,9 +248,21 @@ namespace nov30task.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("nov30task.Models.Tag", b =>
+                {
+                    b.HasOne("nov30task.Models.Blog", null)
+                        .WithMany("Tags")
+                        .HasForeignKey("BlogId");
+                });
+
             modelBuilder.Entity("nov30task.Models.Author", b =>
                 {
                     b.Navigation("NewBlog");
+                });
+
+            modelBuilder.Entity("nov30task.Models.Blog", b =>
+                {
+                    b.Navigation("Tags");
                 });
 
             modelBuilder.Entity("nov30task.Models.Category", b =>
