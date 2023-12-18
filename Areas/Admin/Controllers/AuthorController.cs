@@ -23,7 +23,9 @@ namespace nov30task.Areas.Admin.Controllers
 
         }
         public IActionResult Create()
+
         {
+            
             return View();
         }
 

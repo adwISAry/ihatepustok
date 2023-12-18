@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using nov30task.Context;
 using nov30task.ViewModels.BlogVM;
@@ -20,7 +21,9 @@ namespace nov30task.Areas.Admin.Controllers
         }
 
         public IActionResult Create()
+
         {
+            ViewBag.Tag = new SelectList(ViewBag.Tag, "Id", "Title");
             return View();
         }
 

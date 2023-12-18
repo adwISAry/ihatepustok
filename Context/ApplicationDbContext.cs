@@ -14,7 +14,7 @@ namespace nov30task.Context
         public DbSet<Author> Auhtors { get; set; }
 
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+
     } 
-
-
 }
