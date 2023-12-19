@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace nov30task.Migrations
 {
-    public partial class xd : Migration
+    public partial class isa123 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

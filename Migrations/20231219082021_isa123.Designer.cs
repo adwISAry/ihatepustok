@@ -12,8 +12,8 @@ using nov30task.Context;
 namespace nov30task.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231218193203_xd")]
-    partial class xd
+    [Migration("20231219082021_isa123")]
+    partial class isa123
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
