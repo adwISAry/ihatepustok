@@ -1,4 +1,4 @@
-﻿﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -322,24 +322,30 @@
                         <div class="col-lg-4">
                             <div class="main-navigation flex-lg-right">
                                 <div class="cart-widget">
-                                    <div class="login-block">
-                                        <a href="login-register.html" class="font-weight-bold">Login</a> <br>
-                                        <span>or</span><a href="login-register.html">Register</a>
-                                    </div>
-                                    <div class="cart-block">
-                                        <div class="cart-total">
-                                            <span class="text-number">
-                                                0
-                                            </span>
-                                            <span class="text-item">
-                                                Basket
-                                            </span>
-                                            <span class="price">
-                                                
-                                                <i class="fas fa-chevron-down"></i>
-                                            </span>
+                                    @if (User.Identity.IsAuthenticated == false)
+                                    {
+                                        <div class="login-block">
+                                            <a asp-controller="Auth" asp-action="Login" class="font-weight-bold">Login</a> <br>
+                                            <span>or</span><a asp-controller="Auth" asp-action="Register">Register</a>
                                         </div>
-                                        <div class="cart-dropdown-block">
+                                    }
+                                    else
+                                    {
+                                        <div class="main-navigation flex-lg-right">
+                                            <ul class="main-menu menu-right ">
+                                                <li class="menu-item has-children">
+                                                    <a href="javascript:void(0)">
+                                                        @User.Identity.Name <i class="fas fa-chevron-down dropdown-arrow"></i>
+                                                    </a>
+                                                    <ul class="sub-menu">
+                                                        <li><a asp-controller="Auth" asp-action="Profile">Profile</a></li>
+                                                        <li><a asp-controller="Auth" asp-action="Logout">Logout</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    }  
+                                    <div class="cart-dropdown-block">
                                             <div class=" single-cart-block ">
                                                 <div class="cart-product">
                                                     <a href="product-details.html" class="image">
@@ -468,9 +474,8 @@
                         <img src="image/icon/payment.png" alt="">
                     </a>
                     <p class="copyright-text">
-                        Copyright © 2019 <a href="#" class="author">Pustok</a>. All Right Reserved.
+                         <a href="#" class="author">Pustok</a>. 
                         <br>
-                        Design By Pustok
                     </p>
                 </div>
             </div>
@@ -479,6 +484,7 @@
         <script src="js/plugins.js"></script>
         <script src="js/ajax-mail.js"></script>
         <script src="js/custom.js"></script>
+       
 </body>
 
 
