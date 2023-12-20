@@ -1,45 +1,132 @@
 ﻿@using nov30task.ViewModels.AuthVM
 @model RegisterVM
 @{
-
 }
-<main class="page-section inner-page-sec-padding-bottom">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb--30 mb-lg--0">
-				<!-- Login Form s-->
-				<form action="#">
-					<div class="login-form">
-						<h4 class="login-title">Register</h4>
-						<p><span class="font-weight-bold">New Account</span></p>
-						<div class="row">
-							<div class="col-md-12 col-12 mb--15">
-								<label for="email">Full Name</label>
-								<input class="mb-0 form-control" type="text" id="name"
-									   placeholder="Enter your full name">
-							</div>
-							<div class="col-12 mb--20">
-								<label for="email">Email</label>
-								<input class="mb-0 form-control" type="email" id="email" placeholder="Enter Your Email Address Here..">
-							</div>
-							<div class="col-lg-6 mb--20">
-								<label for="password">Password</label>
-								<input class="mb-0 form-control" type="password" id="password" placeholder="Enter your password">
-							</div>
-							<div class="col-lg-6 mb--20">
-								<label for="password">Repeat Password</label>
-								<input class="mb-0 form-control" type="password" id="repeat-password" placeholder="Repeat your password">
-							</div>
-							<div class="col-md-12">
-								<a href="#" class="btn btn-outlined">Register</a>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-			
-		</div>
-	</div>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header,
+        .card-footer {
+            background: linear-gradient(to right, #28a745, #218838); /* Green gradient */
+            color: #ffffff;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #6c757d; /* Dark gray border */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #28a745, #218838); /* Green gradient */
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+            .btn-primary:hover {
+                background: linear-gradient(to right, #218838, #1e7e34); /* Darker green gradient on hover */
+            }
+
+        .small a {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <main class="page-section inner-page-sec-padding-bottom">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5" style="background-color: #f8f9fa;">
+                        <div class="card-header" style="background-color: #007bff; color: #ffffff;">
+                            <h3 class="text-center font-weight-light my-4">Create an Account</h3>
+                        </div>
+                        <div class="card-body">
+                            <form asp-action="Register" method="post">
+                                <div class="form-row">
+                                    <div class="col-md-12 mb-3">
+                                        <label for="UserName">Username</label>
+                                        <input type="text" class="form-control" placeholder="Enter your username" asp-for="UserName" />
+                                        <span class="text-danger" asp-validation-for="UserName"></span>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="Email">Email</label>
+                                        <input type="email" class="form-control" placeholder="Enter your email" asp-for="Email" />
+                                        <span class="text-danger" asp-validation-for="Email"></span>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="Password">Password</label>
+                                        <input type="password" class="form-control" placeholder="Enter your password" asp-for="Password" />
+                                        <span class="text-danger" asp-validation-for="Password"></span>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="ConfirmPassword">Confirm Password</label>
+                                        <input type="password" class="form-control" placeholder="Repeat password" asp-for="ConfirmPassword" />
+                                        <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary btn-block" style="background-color: #007bff;">Register</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
 
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+</body>
+</html>
