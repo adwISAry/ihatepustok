@@ -34,11 +34,13 @@ namespace nov30task.Controllers
                 return View(vm);
             }
 
-            var result = await _userManager.CreateAsync(new AppUser
+            var user = new AppUser
             {
                 UserName = vm.UserName,
                 Email = vm.Email,
-            }, vm.Password);
+            };
+
+            var result = await _userManager.CreateAsync(user, vm.Password);
 
             if (!result.Succeeded)
             {
@@ -49,8 +51,8 @@ namespace nov30task.Controllers
 
                 return View(vm);
             }
+            return RedirectToAction("Index", "Home");
 
-            return RedirectToAction("RegistrationSuccess");
         }
         [HttpGet]
         public IActionResult Login()
@@ -71,6 +73,7 @@ namespace nov30task.Controllers
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Home");
+
             }
 
             ModelState.AddModelError("", "Invalid login attempt");

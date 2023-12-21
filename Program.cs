@@ -10,15 +10,24 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration["ConnectionStrings:MSSql"]);
-}).AddIdentity<AppUser, IdentityRole>(opt => {
+}).AddIdentity<AppUser, IdentityRole>(opt =>
+{
     opt.SignIn.RequireConfirmedEmail = false;
+    
+
     opt.User.RequireUniqueEmail = true;
-    opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-    opt.Lockout.MaxFailedAccessAttempts= 5;
-    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyz0123456789._";
+    opt.SignIn.RequireConfirmedPhoneNumber = false;
+    opt.SignIn.RequireConfirmedEmail = false;
+    opt.SignIn.RequireConfirmedAccount= false;
+    
+
+    opt.Lockout.MaxFailedAccessAttempts = 5;
+    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
     opt.Password.RequireNonAlphanumeric = false;
-    opt.Password.RequiredLength = 6;
-}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+    opt.Password.RequiredLength = 4;
+}).AddDefaultTokenProviders().AddEntityFrameworkStores<ApplicationDbContext>();
+
 
 var app = builder.Build();
 

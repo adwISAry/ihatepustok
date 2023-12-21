@@ -33,6 +33,7 @@ namespace nov30task.Controllers
                 Id = a.Id,
 
             });
+
             model.Sliders = (await _context.Sliders.ToListAsync()).Select(a=> new SliderListItemVM());
             return View(model);
         }
