@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using nov30task.Models;
 using nov30task.ViewModels.AuthVM;
 using Microsoft.AspNetCore.Identity;
+using nov30task.ExternalServices.Interfaces;
+using nov30task.ExternalServices.Implements;
 
 namespace nov30task.Controllers
 {
@@ -12,10 +14,26 @@ namespace nov30task.Controllers
 
         SignInManager<AppUser> _signInManager { get; }
         UserManager<AppUser> _userManager { get; }
-        public AuthController(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+        RoleManager<IdentityRole> _roleManager { get; }
+        IEmailService _emailService { get; }
+   
+
+        public AuthController(SignInManager<AppUser> signInManager,
+            UserManager<AppUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            EmailService emailService
+            )
+         
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _roleManager = roleManager;
+            _emailService = emailService;
+          
+        }
+        public IActionResult SendMail()
+        {
+            _emailService.Send("","hi!","welcome!")
         }
 
 
