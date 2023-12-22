@@ -2,12 +2,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using nov30task;
 using nov30task.Context;
+using nov30task.ExternalServices.Implements;
+using nov30task.ExternalServices.Interfaces;
 using nov30task.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

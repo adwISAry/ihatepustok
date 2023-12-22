@@ -21,7 +21,7 @@ namespace nov30task.Controllers
         public AuthController(SignInManager<AppUser> signInManager,
             UserManager<AppUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            EmailService emailService
+            IEmailService emailService
             )
          
         {
@@ -33,7 +33,9 @@ namespace nov30task.Controllers
         }
         public IActionResult SendMail()
         {
-            _emailService.Send("","hi!","welcome!")
+            _emailService.Send("mi75axs6d@code.edu.az", "hi!", "welcome!");
+            return Ok();
+            //narminshivakhanova@gmail.com
         }
 
 
